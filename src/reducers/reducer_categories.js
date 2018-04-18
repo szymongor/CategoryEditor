@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { FETCH_CATEGORIES } from '../actions/index';
 
 const INITIAL_STATE = { categories: [], categoriesTree: {}, currentNode: null };

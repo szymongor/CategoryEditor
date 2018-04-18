@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Grid, Col, Well } from 'react-bootstrap';
 import { fetchCategories } from './actions/index';
 import CategoryTree from './components/category_tree';
+import CurrentCategory from './components/current_category';
 import logo from './logo.svg';
 import './App.css';
 
@@ -11,16 +13,24 @@ class App extends Component {
   }
 
   render() {
-    console.log('categories: ', this.props);
-    console.log('categoriesTree: ', this.props.categoriesTree);
-    console.log('currentNode: ', this.props.currentNode);
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <CategoryTree {...this.props} />
+        <Grid fluid={true}>
+          <Col xs={12} md={5}>
+            <Well>
+              <CategoryTree {...this.props} />
+            </Well>
+          </Col>
+          <Col xs={12} md={7}>
+            <Well>
+              <CurrentCategory {...this.props} />
+            </Well>
+          </Col>
+        </Grid>
       </div>
     );
   }

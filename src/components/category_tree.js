@@ -34,7 +34,7 @@ class CategoryTree extends Component {
   render() {
     return (
       <div>
-        <p className="App-intro">Category list:</p>
+        <p className="App-intro">Categories</p>
         {this.renderCategories()}
       </div>
     );
