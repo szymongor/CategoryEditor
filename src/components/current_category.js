@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { editCategory } from '../actions/appActions';
 import { ButtonToolbar, Button, Glyphicon, Table } from 'react-bootstrap';
 
 const CATEGORY_FIELDS = [
@@ -78,6 +79,10 @@ class CurrentCategory extends Component {
     );
   }
 
+  editClick() {
+    this.props.editCategory();
+  }
+
   renderButtons() {
     return (
       <ButtonToolbar>
@@ -85,7 +90,7 @@ class CurrentCategory extends Component {
           <Glyphicon glyph="plus" />
           <span> Add new subcategory</span>
         </Button>
-        <Button bsStyle="warning">
+        <Button bsStyle="warning" onClick={this.editClick.bind(this)}>
           <Glyphicon glyph="pencil" />
           <span> Edit</span>
         </Button>
@@ -116,4 +121,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {})(CurrentCategory);
+export default connect(mapStateToProps, { editCategory })(CurrentCategory);

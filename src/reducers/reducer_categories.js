@@ -1,4 +1,7 @@
-import { FETCH_CATEGORIES, SELECT_CURRENT_CATEGORY } from '../actions/index';
+import {
+  FETCH_CATEGORIES,
+  SELECT_CURRENT_CATEGORY
+} from '../actions/apiActions';
 
 const INITIAL_STATE = { categories: [], categoriesTree: {}, currentNode: null };
 

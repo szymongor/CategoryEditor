@@ -72,7 +72,6 @@ class CategoryForm extends Component {
 
   renderCategoryField(fieldConfig) {
     let currentCategory = this.props.categories[this.props.currentNode];
-    console.log(currentCategory);
     return (
       <FormGroup controlId={'form' + fieldConfig.field} key={fieldConfig.field}>
         <Col componentClass={ControlLabel} sm={3}>

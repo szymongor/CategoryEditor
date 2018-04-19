@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Grid, Col, Well } from 'react-bootstrap';
-import { fetchCategories, selectCurrentCategory } from './actions/index';
+import { fetchCategories, selectCurrentCategory } from './actions/apiActions';
 import CategoryTree from './components/category_tree';
-import CurrentCategory from './components/current_category';
+import EastPanel from './components/east_panel';
 import logo from './logo.svg';
 import './App.css';
 
@@ -17,8 +17,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Category Editor</h1>
         </header>
         <Grid fluid={true}>
           <Col xs={12} md={5}>
@@ -28,7 +27,7 @@ class App extends Component {
           </Col>
           <Col xs={12} md={7}>
             <Well>
-              <CurrentCategory />
+              <EastPanel />
             </Well>
           </Col>
         </Grid>
