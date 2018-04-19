@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { changeMode, CATEGORY_VIEW } from '../actions/appActions';
 import _ from 'lodash';
 import { ListGroup, ListGroupItem, Glyphicon } from 'react-bootstrap';
 
@@ -6,6 +8,7 @@ class CategoryTree extends Component {
   categoryClicked(category_id) {
     if (category_id) {
       return () => {
+        this.props.changeMode(CATEGORY_VIEW);
         this.props.selectCurrentCategory(category_id);
       };
     }
@@ -70,4 +73,4 @@ class CategoryTree extends Component {
   }
 }
 
-export default CategoryTree;
+export default connect(null, { changeMode })(CategoryTree);

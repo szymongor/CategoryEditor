@@ -1,55 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { editCategory } from '../actions/appActions';
+import { changeMode } from '../actions/appActions';
+import { CATEGORY_EDIT } from '../actions/appActions';
 import { ButtonToolbar, Button, Glyphicon, Table } from 'react-bootstrap';
-
-const CATEGORY_FIELDS = [
-  {
-    field: 'name',
-    label: 'Name',
-    type: 'string'
-  },
-  {
-    field: 'id',
-    label: 'Id',
-    type: 'int'
-  },
-  {
-    field: 'parent_id',
-    label: 'ParentId',
-    type: 'int'
-  },
-  {
-    field: 'is_visible',
-    label: 'IsVisible',
-    type: 'bool'
-  },
-  {
-    field: 'description',
-    label: 'Description',
-    type: 'string'
-  },
-  {
-    field: 'picture_filename',
-    label: 'PictureFilename',
-    type: 'string'
-  },
-  {
-    field: 'ordering',
-    label: 'Ordering',
-    type: 'int'
-  },
-  {
-    field: 'source_id',
-    label: 'SourceId',
-    type: 'string'
-  },
-  {
-    field: 'symbol',
-    label: 'Symbol',
-    type: 'string'
-  }
-];
+import { CATEGORY_FIELDS } from './category_fields';
 
 class CurrentCategory extends Component {
   renderCategoryFields() {
@@ -80,7 +34,7 @@ class CurrentCategory extends Component {
   }
 
   editClick() {
-    this.props.editCategory();
+    this.props.changeMode(CATEGORY_EDIT);
   }
 
   renderButtons() {
@@ -121,4 +75,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { editCategory })(CurrentCategory);
+export default connect(mapStateToProps, { changeMode })(CurrentCategory);

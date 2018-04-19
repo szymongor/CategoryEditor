@@ -2,16 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CurrentCategory from './current_category';
 import CategoryForm from './category_form';
-
-const CATEGORY_VIEW = 'CATEGORY_VIEW';
-const CATEGORY_EDIT = 'CATEGORY_EDIT';
+import { CATEGORY_VIEW, CATEGORY_EDIT } from '../actions/appActions';
 
 class EastPanel extends Component {
   constructor(props) {
     super(props);
   }
   render() {
-    console.log(this.props.mode);
     switch (this.props.mode) {
       case CATEGORY_VIEW:
         return <CurrentCategory />;

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { changeMode, CATEGORY_VIEW } from '../actions/appActions';
+import { CATEGORY_FIELDS } from './category_fields';
 import {
   Form,
   FormGroup,
@@ -10,54 +12,6 @@ import {
   Button,
   Glyphicon
 } from 'react-bootstrap';
-
-const CATEGORY_FIELDS = [
-  {
-    field: 'name',
-    label: 'Name',
-    type: 'string'
-  },
-  {
-    field: 'id',
-    label: 'Id',
-    type: 'int'
-  },
-  {
-    field: 'parent_id',
-    label: 'ParentId',
-    type: 'int'
-  },
-  {
-    field: 'is_visible',
-    label: 'IsVisible',
-    type: 'bool'
-  },
-  {
-    field: 'description',
-    label: 'Description',
-    type: 'string'
-  },
-  {
-    field: 'picture_filename',
-    label: 'PictureFilename',
-    type: 'string'
-  },
-  {
-    field: 'ordering',
-    label: 'Ordering',
-    type: 'int'
-  },
-  {
-    field: 'source_id',
-    label: 'SourceId',
-    type: 'string'
-  },
-  {
-    field: 'symbol',
-    label: 'Symbol',
-    type: 'string'
-  }
-];
 
 class CategoryForm extends Component {
   renderCategoryFields() {
@@ -86,25 +40,28 @@ class CategoryForm extends Component {
     );
   }
 
+  abortClicked() {
+    this.props.changeMode(CATEGORY_VIEW);
+  }
+
   render() {
-    console.log('Render');
     return (
       <div>
         <p className="App-intro">Current Category</p>
         <Form horizontal>
           {this.renderCategoryFields()}
           <ButtonToolbar>
-            <Button xs={3} bsStyle="warning">
+            <Button xs={3} bsStyle="success">
               <Glyphicon glyph="ok" />
               <span> Save changes</span>
             </Button>
-            <Button xs={3} bsStyle="danger">
+            <Button
+              xs={3}
+              bsStyle="danger"
+              onClick={this.abortClicked.bind(this)}
+            >
               <Glyphicon glyph="remove" />
-              <span> Delete</span>
-            </Button>
-            <Button xs={3} bsStyle="success">
-              <Glyphicon glyph="plus" />
-              <span> Add new subcategory</span>
+              <span> Abort</span>
             </Button>
           </ButtonToolbar>
         </Form>
@@ -121,4 +78,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {})(CategoryForm);
+export default connect(mapStateToProps, { changeMode })(CategoryForm);
