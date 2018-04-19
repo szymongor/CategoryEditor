@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Grid, Col, Well } from 'react-bootstrap';
-import { fetchCategories } from './actions/index';
+import { fetchCategories, selectCurrentCategory } from './actions/index';
 import CategoryTree from './components/category_tree';
 import CurrentCategory from './components/current_category';
 import logo from './logo.svg';
@@ -13,6 +13,7 @@ class App extends Component {
   }
 
   render() {
+    let currentCategory = this.props.categories[this.props.currentNode];
     return (
       <div className="App">
         <header className="App-header">
@@ -27,7 +28,7 @@ class App extends Component {
           </Col>
           <Col xs={12} md={7}>
             <Well>
-              <CurrentCategory {...this.props} />
+              <CurrentCategory />
             </Well>
           </Col>
         </Grid>
@@ -44,5 +45,8 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { fetchCategories })(App);
+export default connect(mapStateToProps, {
+  fetchCategories,
+  selectCurrentCategory
+})(App);
 //export default App;

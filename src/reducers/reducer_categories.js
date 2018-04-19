@@ -1,4 +1,4 @@
-import { FETCH_CATEGORIES } from '../actions/index';
+import { FETCH_CATEGORIES, SELECT_CURRENT_CATEGORY } from '../actions/index';
 
 const INITIAL_STATE = { categories: [], categoriesTree: {}, currentNode: null };
 
@@ -8,6 +8,11 @@ export default function(state = INITIAL_STATE, action) {
       return {
         ...state,
         ...newState(state, action.payload.data.data.categories)
+      };
+    case SELECT_CURRENT_CATEGORY:
+      return {
+        ...state,
+        currentNode: action.payload
       };
     default:
       return state;

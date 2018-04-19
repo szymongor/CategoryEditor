@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ButtonToolbar, Button, Glyphicon, Table } from 'react-bootstrap';
+import {
+  Form,
+  FormGroup,
+  Col,
+  ControlLabel,
+  FormControl,
+  ButtonToolbar,
+  Button,
+  Glyphicon
+} from 'react-bootstrap';
 
 const CATEGORY_FIELDS = [
   {
@@ -50,18 +59,12 @@ const CATEGORY_FIELDS = [
   }
 ];
 
-class CurrentCategory extends Component {
+class CategoryForm extends Component {
   renderCategoryFields() {
     if (this.props.currentNode) {
-      return (
-        <Table striped bordered condensed hover>
-          <tbody>
-            {CATEGORY_FIELDS.map(fieldConfig => {
-              return this.renderCategoryField(fieldConfig);
-            })}
-          </tbody>
-        </Table>
-      );
+      return CATEGORY_FIELDS.map(fieldConfig => {
+        return this.renderCategoryField(fieldConfig);
+      });
     } else {
       return <p className="App-intro">Loading...</p>;
     }
@@ -69,40 +72,43 @@ class CurrentCategory extends Component {
 
   renderCategoryField(fieldConfig) {
     let currentCategory = this.props.categories[this.props.currentNode];
-    //console.log(currentCategory);
+    console.log(currentCategory);
     return (
-      <tr key={fieldConfig.field}>
-        <td width="30%">{fieldConfig.label}</td>
-        <td colSpan="2">{String(currentCategory[fieldConfig.field])}</td>
-      </tr>
-    );
-  }
-
-  renderButtons() {
-    return (
-      <ButtonToolbar>
-        <Button bsStyle="success">
-          <Glyphicon glyph="plus" />
-          <span> Add new subcategory</span>
-        </Button>
-        <Button bsStyle="warning">
-          <Glyphicon glyph="pencil" />
-          <span> Edit</span>
-        </Button>
-        <Button bsStyle="danger">
-          <Glyphicon glyph="remove" />
-          <span> Delete</span>
-        </Button>
-      </ButtonToolbar>
+      <FormGroup controlId={'form' + fieldConfig.field} key={fieldConfig.field}>
+        <Col componentClass={ControlLabel} sm={3}>
+          {fieldConfig.label}
+        </Col>
+        <Col sm={9}>
+          <FormControl
+            defaultValue={String(currentCategory[fieldConfig.field])}
+          />
+        </Col>
+      </FormGroup>
     );
   }
 
   render() {
+    console.log('Render');
     return (
       <div>
         <p className="App-intro">Current Category</p>
-        {this.renderCategoryFields()}
-        {this.renderButtons()}
+        <Form horizontal>
+          {this.renderCategoryFields()}
+          <ButtonToolbar>
+            <Button xs={3} bsStyle="warning">
+              <Glyphicon glyph="ok" />
+              <span> Save changes</span>
+            </Button>
+            <Button xs={3} bsStyle="danger">
+              <Glyphicon glyph="remove" />
+              <span> Delete</span>
+            </Button>
+            <Button xs={3} bsStyle="success">
+              <Glyphicon glyph="plus" />
+              <span> Add new subcategory</span>
+            </Button>
+          </ButtonToolbar>
+        </Form>
       </div>
     );
   }
@@ -116,4 +122,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {})(CurrentCategory);
+export default connect(mapStateToProps, {})(CategoryForm);
