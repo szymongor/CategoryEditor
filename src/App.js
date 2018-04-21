@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import { Grid, Col, Well } from 'react-bootstrap';
 import { fetchCategories, selectCurrentCategory } from './actions/apiActions';
 import CategoryTree from './components/category_tree';
-import EastPanel from './components/east_panel';
-import logo from './logo.svg';
+import EastPanel from './components/East_panel';
 import './App.css';
 
 class App extends Component {
@@ -13,7 +12,6 @@ class App extends Component {
   }
 
   render() {
-    let currentCategory = this.props.categories[this.props.currentNode];
     return (
       <div className="App">
         <header className="App-header">
@@ -48,4 +46,3 @@ export default connect(mapStateToProps, {
   fetchCategories,
   selectCurrentCategory
 })(App);
-//export default App;

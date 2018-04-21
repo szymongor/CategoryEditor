@@ -1,67 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { changeMode } from '../actions/appActions';
-import { CATEGORY_EDIT } from '../actions/appActions';
+import { CATEGORY_EDIT, CATEGORY_NEW } from '../actions/appActions';
 import { ButtonToolbar, Button, Glyphicon, Table } from 'react-bootstrap';
 import { CATEGORY_FIELDS } from './category_fields';
 
 class CurrentCategory extends Component {
-  renderCategoryFields() {
-    if (this.props.currentNode) {
-      return (
-        <Table striped bordered condensed hover>
-          <tbody>
-            {CATEGORY_FIELDS.map(fieldConfig => {
-              return this.renderCategoryField(fieldConfig);
-            })}
-          </tbody>
-        </Table>
-      );
-    } else {
-      return <p className="App-intro">Loading...</p>;
-    }
-  }
-
-  renderCategoryField(fieldConfig) {
-    let currentCategory = this.props.categories[this.props.currentNode];
-    //console.log(currentCategory);
-    return (
-      <tr key={fieldConfig.field}>
-        <td width="30%">{fieldConfig.label}</td>
-        <td colSpan="2">{String(currentCategory[fieldConfig.field])}</td>
-      </tr>
-    );
-  }
-
-  editClick() {
-    this.props.changeMode(CATEGORY_EDIT);
-  }
-
-  renderButtons() {
-    return (
-      <ButtonToolbar>
-        <Button bsStyle="success">
-          <Glyphicon glyph="plus" />
-          <span> Add new subcategory</span>
-        </Button>
-        <Button bsStyle="warning" onClick={this.editClick.bind(this)}>
-          <Glyphicon glyph="pencil" />
-          <span> Edit</span>
-        </Button>
-        <Button bsStyle="danger">
-          <Glyphicon glyph="remove" />
-          <span> Delete</span>
-        </Button>
-      </ButtonToolbar>
-    );
-  }
-
   render() {
+    let currentCategory = this.props.categories[this.props.currentNode];
     return (
       <div>
         <p className="App-intro">Current Category</p>
-        {this.renderCategoryFields()}
-        {this.renderButtons()}
+        <CategoryFieldsTable currentCategory={currentCategory} />
+        <ButtonsToolbar
+          onEdit={() => {
+            this.props.changeMode(CATEGORY_EDIT);
+          }}
+          onAddNew={() => {
+            this.props.changeMode(CATEGORY_NEW);
+          }}
+        />
       </div>
     );
   }
@@ -76,3 +34,53 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { changeMode })(CurrentCategory);
+
+const ButtonsToolbar = props => {
+  return (
+    <ButtonToolbar>
+      <Button bsStyle="success" onClick={props.onAddNew}>
+        <Glyphicon glyph="plus" />
+        <span> Add new subcategory</span>
+      </Button>
+      <Button bsStyle="warning" onClick={props.onEdit}>
+        <Glyphicon glyph="pencil" />
+        <span> Edit</span>
+      </Button>
+      <Button bsStyle="danger">
+        <Glyphicon glyph="remove" />
+        <span> Delete</span>
+      </Button>
+    </ButtonToolbar>
+  );
+};
+
+const CategoryFieldRow = props => {
+  return (
+    <tr key={props.fieldConfig.field}>
+      <td width="30%">{props.fieldConfig.label}</td>
+      <td colSpan="2">{String(props.fieldValue)}</td>
+    </tr>
+  );
+};
+
+const CategoryFieldsTable = props => {
+  if (props.currentCategory) {
+    return (
+      <Table striped bordered condensed hover>
+        <tbody>
+          {CATEGORY_FIELDS.map(fieldConfig => {
+            return (
+              <CategoryFieldRow
+                fieldConfig={fieldConfig}
+                fieldValue={props.currentCategory[fieldConfig.field]}
+                key={fieldConfig.field}
+              />
+            );
+          })}
+        </tbody>
+      </Table>
+    );
+  } else {
+    return <p className="App-intro">Loading...</p>;
+  }
+};
