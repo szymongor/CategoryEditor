@@ -10,6 +10,20 @@ import {
 } from '../actions/appActions';
 
 class EastPanel extends Component {
+  constructor(props) {
+    super(props);
+    this.onEdit = this.onEdit.bind(this);
+    this.onNew = this.onNew.bind(this);
+  }
+
+  onEdit(formFields) {
+    console.log('SUBMIT EDIT: ', formFields);
+  }
+
+  onNew(formFields) {
+    console.log('SUBMIT ADD NEW: ', formFields);
+  }
+
   render() {
     switch (this.props.mode) {
       case CATEGORY_VIEW:
@@ -17,16 +31,19 @@ class EastPanel extends Component {
       case CATEGORY_EDIT:
         return (
           <CategoryForm
+            title="Edit Category"
+            mode={CATEGORY_EDIT}
             currentCategory={this.props.currentCategory}
-            onSubmit={() => console.log('SUBMIT EDIT')}
+            onSubmit={this.onEdit}
             onAbort={() => this.props.changeMode(CATEGORY_VIEW)}
           />
         );
       case CATEGORY_NEW:
         return (
           <CategoryForm
-            newCategory={true}
-            onSubmit={() => console.log('SUBMIT ADD_NEW')}
+            title="New Category"
+            mode={CATEGORY_NEW}
+            onSubmit={this.onNew}
             onAbort={() => this.props.changeMode(CATEGORY_VIEW)}
           />
         );

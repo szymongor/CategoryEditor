@@ -1,18 +1,65 @@
 import React from 'react';
-import { FormGroup, Col, ControlLabel, FormControl } from 'react-bootstrap';
+import {
+  FormGroup,
+  Col,
+  ControlLabel,
+  FormControl,
+  Checkbox
+} from 'react-bootstrap';
 
 const CategoryField = props => {
+  let {
+    fieldConfig,
+    currentCategoryValue,
+    handleInputChange,
+    inputState
+  } = props;
+  let inputElement;
+  switch (fieldConfig.type) {
+    case 'string':
+      inputElement = (
+        <FormControl
+          name={fieldConfig.field}
+          onChange={handleInputChange}
+          value={inputState || ''}
+        />
+      );
+      break;
+    case 'int':
+      inputElement = (
+        <FormControl
+          name={fieldConfig.field}
+          onChange={handleInputChange}
+          value={inputState || ''}
+          type="number"
+        />
+      );
+      break;
+    case 'bool':
+      inputElement = (
+        <Checkbox
+          name={fieldConfig.field}
+          onChange={handleInputChange}
+          checked={inputState}
+        />
+      );
+      break;
+    default:
+      inputElement = (
+        <FormControl
+          name={fieldConfig.field}
+          onChange={handleInputChange}
+          value={inputState || ''}
+        />
+      );
+      break;
+  }
   return (
-    <FormGroup
-      controlId={'form' + props.fieldConfig.field}
-      key={props.fieldConfig.field}
-    >
+    <FormGroup controlId={'form' + fieldConfig.field} key={fieldConfig.field}>
       <Col componentClass={ControlLabel} sm={3}>
-        {props.fieldConfig.label}
+        {fieldConfig.label}
       </Col>
-      <Col sm={9}>
-        <FormControl defaultValue={String(props.currentCategoryValue)} />
-      </Col>
+      <Col sm={9}>{inputElement}</Col>
     </FormGroup>
   );
 };

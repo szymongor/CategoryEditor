@@ -1,4 +1,4 @@
-import { FETCH_CATEGORIES } from '../actions/apiActions';
+import { FETCH_CATEGORIES, CREATE_CATEGORY } from '../actions/apiActions';
 
 import { SELECT_CURRENT_CATEGORY } from '../actions/appActions';
 
@@ -11,6 +11,9 @@ export default function(state = INITIAL_STATE, action) {
         ...state,
         ...newState(state, action.payload.data.data.categories)
       };
+    case CREATE_CATEGORY:
+      console.log(action.payload);
+      return state;
     case SELECT_CURRENT_CATEGORY:
       return {
         ...state,

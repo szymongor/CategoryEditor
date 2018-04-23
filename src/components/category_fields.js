@@ -2,46 +2,64 @@ export const CATEGORY_FIELDS = [
   {
     field: 'name',
     label: 'Name',
-    type: 'string'
+    type: 'string',
+    CATEGORY_NEW: true,
+    CATEGORY_EDIT: true
   },
   {
     field: 'id',
     label: 'Id',
-    type: 'int'
+    type: 'int',
+    CATEGORY_NEW: false,
+    CATEGORY_EDIT: false
   },
   {
     field: 'parent_id',
     label: 'ParentId',
-    type: 'int'
+    type: 'int',
+    CATEGORY_NEW: false,
+    CATEGORY_EDIT: false
   },
   {
     field: 'is_visible',
     label: 'IsVisible',
-    type: 'bool'
+    type: 'bool',
+    CATEGORY_NEW: true,
+    CATEGORY_EDIT: true
   },
   {
     field: 'description',
     label: 'Description',
-    type: 'string'
+    type: 'string',
+    CATEGORY_NEW: true,
+    CATEGORY_EDIT: true
   },
   {
     field: 'picture_filename',
     label: 'PictureFilename',
-    type: 'string'
+    type: 'string',
+    CATEGORY_NEW: true,
+    CATEGORY_EDIT: true
   },
   {
     field: 'ordering',
     label: 'Ordering',
-    type: 'int'
+    type: 'int',
+    CATEGORY_NEW: true,
+    CATEGORY_EDIT: true
   },
   {
     field: 'source_id',
     label: 'SourceId',
-    type: 'string'
+    type: 'string',
+    CATEGORY_NEW: true,
+    CATEGORY_EDIT: true
   },
   {
     field: 'symbol',
     label: 'Symbol',
-    type: 'string'
+    type: 'string',
+    CATEGORY_NEW: true,
+    CATEGORY_EDIT: true
   }
 ];
