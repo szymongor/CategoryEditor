@@ -19,7 +19,6 @@ class CategoryForm extends Component {
           ? this.props.currentCategory[fieldConfig.field]
           : '';
       }
-
       return acumulator;
     }, {});
     return fields;
