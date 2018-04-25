@@ -56,10 +56,15 @@ const ButtonsToolbar = props => {
 };
 
 const CategoryFieldRow = props => {
+  let fieldValue = props.fieldValue;
+  if (props.fieldValue === null || props.fieldValue === undefined) {
+    fieldValue = '';
+  }
+
   return (
     <tr key={props.fieldConfig.field}>
       <td width="30%">{props.fieldConfig.label}</td>
-      <td colSpan="2">{String(props.fieldValue || '')}</td>
+      <td colSpan="2">{String(fieldValue)}</td>
     </tr>
   );
 };

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CurrentCategory from './current_category';
 import CategoryForm from './category_form/category_form';
-import { updateCategory } from '../actions/apiActions';
 import {
   submitAddForm,
   submitEditForm,

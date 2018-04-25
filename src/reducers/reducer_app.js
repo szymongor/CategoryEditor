@@ -1,4 +1,4 @@
-import { CHANGE_MODE, UPDATE_CATEGORY } from '../actions/appActions';
+import { CHANGE_MODE } from '../actions/appActions';
 
 import { CATEGORY_VIEW_MODE } from '../actions/appActions';
 

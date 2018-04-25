@@ -5,7 +5,6 @@ import {
 } from '../actions/apiActions';
 import {
   changeMode,
-  selectCurrentCategory,
   CATEGORY_VIEW_MODE,
   CREATE_CATEGORY
 } from '../actions/appActions';

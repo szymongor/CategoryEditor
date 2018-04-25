@@ -36,6 +36,8 @@ const validationRouting = store => next => action => {
         case SUBMIT_EDIT_FORM:
           store.dispatch(updateCategory(action.payload));
           break;
+        default:
+          break;
       }
     }
   }
