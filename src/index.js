@@ -8,6 +8,7 @@ import App from './App';
 import validationMDL from './middleware/form_validation';
 import createCategoryMDL from './middleware/create_category';
 import updateCategoryMDL from './middleware/update_category';
+import deleteCategoryMDL from './middleware/delete_category';
 
 // import 'bootstrap/dist/css/bootstrap.css';
 // import './index.css';
@@ -19,7 +20,8 @@ const createStoreWithMiddleware = applyMiddleware(
   promise,
   ...validationMDL,
   ...createCategoryMDL,
-  ...updateCategoryMDL
+  ...updateCategoryMDL,
+  ...deleteCategoryMDL
 )(createStore);
 
 ReactDOM.render(

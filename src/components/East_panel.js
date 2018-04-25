@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import CurrentCategory from './current_category';
 import CategoryForm from './category_form/category_form';
 import { updateCategory } from '../actions/apiActions';
-import { submitAddForm, submitEditForm } from '../actions/appActions';
+import {
+  submitAddForm,
+  submitEditForm,
+  deleteCategory
+} from '../actions/appActions';
 import {
   changeMode,
   CATEGORY_VIEW_MODE,
@@ -16,6 +20,7 @@ class EastPanel extends Component {
     super(props);
     this.onEdit = this.onEdit.bind(this);
     this.onNew = this.onNew.bind(this);
+    this.onDelete = this.onDelete.bind(this);
   }
 
   onEdit(formFields) {
@@ -26,10 +31,14 @@ class EastPanel extends Component {
     this.props.submitAddForm(formFields);
   }
 
+  onDelete() {
+    this.props.deleteCategory(this.props.currentCategory);
+  }
+
   render() {
     switch (this.props.mode) {
       case CATEGORY_VIEW_MODE:
-        return <CurrentCategory />;
+        return <CurrentCategory onDelete={this.onDelete} />;
       case CATEGORY_EDIT_MODE:
         return (
           <CategoryForm
@@ -65,5 +74,6 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
   changeMode,
   submitAddForm,
-  submitEditForm
+  submitEditForm,
+  deleteCategory
 })(EastPanel);

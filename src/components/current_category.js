@@ -19,6 +19,7 @@ class CurrentCategory extends Component {
           onAddNew={() => {
             this.props.changeMode(CATEGORY_NEW_MODE);
           }}
+          onDelete={this.props.onDelete}
         />
       </div>
     );
@@ -46,7 +47,7 @@ const ButtonsToolbar = props => {
         <Glyphicon glyph="pencil" />
         <span> Edit</span>
       </Button>
-      <Button bsStyle="danger">
+      <Button bsStyle="danger" onClick={props.onDelete}>
         <Glyphicon glyph="remove" />
         <span> Delete</span>
       </Button>

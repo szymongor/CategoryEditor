@@ -57,9 +57,11 @@ export function updateCategory(category) {
   };
 }
 
-export function deleteCategory(categoryId) {
+export function deleteCategory(category) {
   return {
     type: DELETE_CATEGORY,
-    payload: categoryId
+    payload: {
+      category: category
+    }
   };
 }
