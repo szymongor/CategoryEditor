@@ -1,31 +1,41 @@
 import axios from 'axios';
 
-export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
-export const CREATE_CATEGORY = 'CREATE_CATEGORY';
-export const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
+export const API_GET_CATEGORIES = 'API_GET_CATEGORIES';
+export const API_POST_CATEGORY = 'API_POST_CATEGORY';
+export const API_PUT_CATEGORY = 'API_PUT_CATEGORY';
+export const API_DELETE_CATEGORY = 'API_DELETE_CATEGORY';
 
-export function fetchCategories() {
+export function getCategories() {
   const request = axios.get(`/categories`);
   return {
-    type: FETCH_CATEGORIES,
+    type: API_GET_CATEGORIES,
     payload: request
   };
 }
 
-export function createCategory(formFields) {
-  let category = { category: formFields };
+export function postCategory(categoryFields) {
+  console.log('POST CATEGORY');
+  let category = { category: categoryFields };
   const request = axios.post(`/categories`, category);
   return {
-    type: CREATE_CATEGORY,
+    type: API_POST_CATEGORY,
     payload: request
   };
 }
 
-export function updateCategory(categoryId, formFields) {
-  let category = { category: formFields };
+export function putCategory(categoryId, categoryFields) {
+  let category = { category: categoryFields };
   const request = axios.put(`/categories/${categoryId}`, category);
   return {
-    type: CREATE_CATEGORY,
+    type: API_PUT_CATEGORY,
+    payload: request
+  };
+}
+
+export function deleteCategory(categoryId) {
+  const request = axios.delete(`/categories/${categoryId}`);
+  return {
+    type: API_DELETE_CATEGORY,
     payload: request
   };
 }

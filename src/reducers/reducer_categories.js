@@ -1,8 +1,4 @@
-import {
-  FETCH_CATEGORIES,
-  CREATE_CATEGORY,
-  UPDATE_CATEGORY
-} from '../actions/apiActions';
+import { API_GET_CATEGORIES, API_POST_CATEGORY } from '../actions/apiActions';
 
 import { SELECT_CURRENT_CATEGORY } from '../actions/appActions';
 
@@ -10,16 +6,12 @@ const INITIAL_STATE = { categories: [], categoriesTree: {}, currentNode: null };
 
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case FETCH_CATEGORIES:
+    case API_GET_CATEGORIES:
       return {
         ...state,
         ...newState(state, action.payload.data.data.categories)
       };
-    case CREATE_CATEGORY:
-      console.log(action.payload);
-      return state;
-    case UPDATE_CATEGORY:
-      console.log(action.payload);
+    case API_POST_CATEGORY:
       return state;
     case SELECT_CURRENT_CATEGORY:
       return {

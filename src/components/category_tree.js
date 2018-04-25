@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {
   changeMode,
   selectCurrentCategory,
-  CATEGORY_VIEW
+  CATEGORY_VIEW_MODE
 } from '../actions/appActions';
 import _ from 'lodash';
 import { ListGroup, ListGroupItem, Glyphicon } from 'react-bootstrap';
@@ -12,7 +12,7 @@ class CategoryTree extends Component {
   categoryClicked(category_id) {
     //console.log('Subcategory clicked: ', category_id);
     if (category_id) {
-      this.props.changeMode(CATEGORY_VIEW);
+      this.props.changeMode(CATEGORY_VIEW_MODE);
       this.props.selectCurrentCategory(category_id);
     }
   }

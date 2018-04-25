@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { changeMode } from '../actions/appActions';
-import { CATEGORY_EDIT, CATEGORY_NEW } from '../actions/appActions';
+import { CATEGORY_EDIT_MODE, CATEGORY_NEW_MODE } from '../actions/appActions';
 import { ButtonToolbar, Button, Glyphicon, Table } from 'react-bootstrap';
 import { CATEGORY_FIELDS } from './category_fields';
 
@@ -14,10 +14,10 @@ class CurrentCategory extends Component {
         <CategoryFieldsTable currentCategory={currentCategory} />
         <ButtonsToolbar
           onEdit={() => {
-            this.props.changeMode(CATEGORY_EDIT);
+            this.props.changeMode(CATEGORY_EDIT_MODE);
           }}
           onAddNew={() => {
-            this.props.changeMode(CATEGORY_NEW);
+            this.props.changeMode(CATEGORY_NEW_MODE);
           }}
         />
       </div>
@@ -58,7 +58,7 @@ const CategoryFieldRow = props => {
   return (
     <tr key={props.fieldConfig.field}>
       <td width="30%">{props.fieldConfig.label}</td>
-      <td colSpan="2">{String(props.fieldValue)}</td>
+      <td colSpan="2">{String(props.fieldValue || '')}</td>
     </tr>
   );
 };

@@ -77,8 +77,8 @@ const CategoryFormLayout = props => {
 
 const CategoryFormFieldsLayout = props => {
   let { currentCategory, inputState, onInputChange, mode } = props;
-  return CATEGORY_FIELDS.map(fieldConfig => {
-    if (fieldConfig[mode]) {
+  return CATEGORY_FIELDS.filter(fieldConfig => fieldConfig[mode]).map(
+    fieldConfig => {
       let categoryValue = currentCategory
         ? currentCategory[fieldConfig.field]
         : '';
@@ -91,10 +91,8 @@ const CategoryFormFieldsLayout = props => {
           currentCategoryValue={categoryValue}
         />
       );
-    } else {
-      return;
     }
-  });
+  );
 };
 
 const FormButtonsLayout = props => {

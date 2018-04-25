@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CurrentCategory from './current_category';
 import CategoryForm from './category_form/category_form';
-import { createCategory, updateCategory } from '../actions/apiActions';
+import { updateCategory } from '../actions/apiActions';
+import { submitAddForm, submitEditForm } from '../actions/appActions';
 import {
   changeMode,
-  CATEGORY_VIEW,
-  CATEGORY_EDIT,
-  CATEGORY_NEW
+  CATEGORY_VIEW_MODE,
+  CATEGORY_EDIT_MODE,
+  CATEGORY_NEW_MODE
 } from '../actions/appActions';
 
 class EastPanel extends Component {
@@ -18,38 +19,34 @@ class EastPanel extends Component {
   }
 
   onEdit(formFields) {
-    console.log('SUBMIT EDIT: ', formFields);
-    console.log('CURRENT CAT: ', this.props.currentCategory.id);
-    this.props.updateCategory(this.props.currentCategory.id, formFields);
+    this.props.submitEditForm(formFields);
   }
 
   onNew(formFields) {
-    formFields['parent_id'] = this.props.currentCategory.id;
-    console.log('SUBMIT ADD NEW: ', formFields);
-    this.props.createCategory(formFields);
+    this.props.submitAddForm(formFields);
   }
 
   render() {
     switch (this.props.mode) {
-      case CATEGORY_VIEW:
+      case CATEGORY_VIEW_MODE:
         return <CurrentCategory />;
-      case CATEGORY_EDIT:
+      case CATEGORY_EDIT_MODE:
         return (
           <CategoryForm
             title="Edit Category"
-            mode={CATEGORY_EDIT}
+            mode={CATEGORY_EDIT_MODE}
             currentCategory={this.props.currentCategory}
             onSubmit={this.onEdit}
-            onAbort={() => this.props.changeMode(CATEGORY_VIEW)}
+            onAbort={() => this.props.changeMode(CATEGORY_VIEW_MODE)}
           />
         );
-      case CATEGORY_NEW:
+      case CATEGORY_NEW_MODE:
         return (
           <CategoryForm
             title="New Category"
-            mode={CATEGORY_NEW}
+            mode={CATEGORY_NEW_MODE}
             onSubmit={this.onNew}
-            onAbort={() => this.props.changeMode(CATEGORY_VIEW)}
+            onAbort={() => this.props.changeMode(CATEGORY_VIEW_MODE)}
           />
         );
       default:
@@ -67,6 +64,6 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   changeMode,
-  createCategory,
-  updateCategory
+  submitAddForm,
+  submitEditForm
 })(EastPanel);

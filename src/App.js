@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Grid, Col, Well } from 'react-bootstrap';
-import { fetchCategories } from './actions/apiActions';
+import { getCategories } from './actions/apiActions';
 import CategoryTree from './components/category_tree';
 import EastPanel from './components/East_panel';
 import './App.css';
 
 class App extends Component {
   componentWillMount() {
-    this.props.fetchCategories();
+    this.props.getCategories();
   }
 
   render() {
@@ -25,7 +25,7 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-  fetchCategories
+  getCategories
 })(App);
 
 const AppLayout = props => {

@@ -1,8 +1,8 @@
-import { CHANGE_MODE } from '../actions/appActions';
+import { CHANGE_MODE, UPDATE_CATEGORY } from '../actions/appActions';
 
-import { CATEGORY_VIEW, CATEGORY_EDIT } from '../actions/appActions';
+import { CATEGORY_VIEW_MODE } from '../actions/appActions';
 
-const INITIAL_STATE = { eastPanelMode: CATEGORY_VIEW };
+const INITIAL_STATE = { eastPanelMode: CATEGORY_VIEW_MODE };
 
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {

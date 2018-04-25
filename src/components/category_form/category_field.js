@@ -8,12 +8,7 @@ import {
 } from 'react-bootstrap';
 
 const CategoryField = props => {
-  let {
-    fieldConfig,
-    currentCategoryValue,
-    handleInputChange,
-    inputState
-  } = props;
+  let { fieldConfig, handleInputChange, inputState } = props;
   let inputElement;
   switch (fieldConfig.type) {
     case 'string':
