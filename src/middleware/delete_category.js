@@ -1,9 +1,9 @@
-import { selectCurrentCategory, DELETE_CATEGORY } from '../actions/appActions';
 import {
-  getCategories,
-  deleteCategory,
-  API_DELETE_CATEGORY
-} from '../actions/apiActions';
+  selectCurrentCategory,
+  fetchCategories,
+  DELETE_CATEGORY
+} from '../actions/appActions';
+import { deleteCategory, API_DELETE_CATEGORY } from '../actions/apiActions';
 
 const validate = store => next => action => {
   if (action.type === DELETE_CATEGORY) {
@@ -34,7 +34,7 @@ const deleteRouter = store => next => action => {
 const deleteSuccess = store => next => action => {
   if (action.type === API_DELETE_CATEGORY) {
     if (action.payload.status === 200) {
-      store.dispatch(getCategories());
+      store.dispatch(fetchCategories());
     }
   }
   let result = next(action);

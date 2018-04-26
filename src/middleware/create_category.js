@@ -1,10 +1,7 @@
-import {
-  postCategory,
-  getCategories,
-  API_POST_CATEGORY
-} from '../actions/apiActions';
+import { postCategory, API_POST_CATEGORY } from '../actions/apiActions';
 import {
   changeMode,
+  fetchCategories,
   CATEGORY_VIEW_MODE,
   CREATE_CATEGORY
 } from '../actions/appActions';
@@ -31,7 +28,7 @@ const creatingSucces = store => next => action => {
   if (action.type === API_POST_CATEGORY) {
     if (action.payload.status === 200) {
       store.dispatch(changeMode(CATEGORY_VIEW_MODE));
-      store.dispatch(getCategories());
+      store.dispatch(fetchCategories());
     }
   }
   let result = next(action);

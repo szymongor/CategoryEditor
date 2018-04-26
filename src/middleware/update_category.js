@@ -1,10 +1,7 @@
-import {
-  putCategory,
-  getCategories,
-  API_PUT_CATEGORY
-} from '../actions/apiActions';
+import { putCategory, API_PUT_CATEGORY } from '../actions/apiActions';
 import {
   changeMode,
+  fetchCategories,
   UPDATE_CATEGORY,
   CATEGORY_VIEW_MODE
 } from '../actions/appActions';
@@ -32,7 +29,7 @@ const updateCategoryRouter = store => next => action => {
 const updatingSucces = store => next => action => {
   if (action.type === API_PUT_CATEGORY) {
     if (action.payload.status === 200) {
-      store.dispatch(getCategories());
+      store.dispatch(fetchCategories());
       store.dispatch(changeMode(CATEGORY_VIEW_MODE));
     }
   }
