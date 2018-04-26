@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Grid, Col, Well } from 'react-bootstrap';
 import { fetchCategories } from './actions/appActions';
-import CategoryTree from './components/category_tree';
+import CategoryTree from './components/Category_tree';
 import EastPanel from './components/East_panel';
 import './App.css';
 

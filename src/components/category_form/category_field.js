@@ -10,13 +10,19 @@ import {
 const CategoryField = props => {
   let { fieldConfig, handleInputChange, inputState } = props;
   let inputElement;
+  let fieldValue;
+  if (inputState === null || inputState === undefined) {
+    fieldValue = '';
+  } else {
+    fieldValue = inputState;
+  }
   switch (fieldConfig.type) {
     case 'string':
       inputElement = (
         <FormControl
           name={fieldConfig.field}
           onChange={handleInputChange}
-          value={inputState || ''}
+          value={fieldValue}
         />
       );
       break;
@@ -25,7 +31,7 @@ const CategoryField = props => {
         <FormControl
           name={fieldConfig.field}
           onChange={handleInputChange}
-          value={inputState || ''}
+          value={fieldValue}
           type="number"
         />
       );
@@ -44,7 +50,7 @@ const CategoryField = props => {
         <FormControl
           name={fieldConfig.field}
           onChange={handleInputChange}
-          value={inputState || ''}
+          value={fieldValue}
         />
       );
       break;

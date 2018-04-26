@@ -9,19 +9,16 @@ class CurrentCategory extends Component {
   render() {
     let currentCategory = this.props.categories[this.props.currentNode];
     return (
-      <div>
-        <p className="App-intro">Current Category</p>
-        <CategoryFieldsTable currentCategory={currentCategory} />
-        <ButtonsToolbar
-          onEdit={() => {
-            this.props.changeMode(CATEGORY_EDIT_MODE);
-          }}
-          onAddNew={() => {
-            this.props.changeMode(CATEGORY_NEW_MODE);
-          }}
-          onDelete={this.props.onDelete}
-        />
-      </div>
+      <CurrentCategoryLayout
+        currentCategory={currentCategory}
+        onEdit={() => {
+          this.props.changeMode(CATEGORY_EDIT_MODE);
+        }}
+        onAddNew={() => {
+          this.props.changeMode(CATEGORY_NEW_MODE);
+        }}
+        onDelete={this.props.onDelete}
+      />
     );
   }
 }
@@ -35,6 +32,22 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { changeMode })(CurrentCategory);
+
+///////////////////////////////////
+
+const CurrentCategoryLayout = props => {
+  return (
+    <div>
+      <p className="App-intro">Current Category</p>
+      <CategoryFieldsTable currentCategory={props.currentCategory} />
+      <ButtonsToolbar
+        onEdit={props.onEdit}
+        onAddNew={props.onAddNew}
+        onDelete={props.onDelete}
+      />
+    </div>
+  );
+};
 
 const ButtonsToolbar = props => {
   return (

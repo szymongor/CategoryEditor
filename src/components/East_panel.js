@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import CurrentCategory from './current_category';
-import CategoryForm from './category_form/category_form';
+import CurrentCategory from './Current_category';
+import CategoryForm from './category_form/Category_form';
 import {
   submitAddForm,
   submitEditForm,

@@ -10,7 +10,6 @@ import { ListGroup, ListGroupItem, Glyphicon } from 'react-bootstrap';
 
 class CategoryTree extends Component {
   categoryClicked(category_id) {
-    //console.log('Subcategory clicked: ', category_id);
     if (category_id) {
       this.props.changeMode(CATEGORY_VIEW_MODE);
       this.props.selectCurrentCategory(category_id);
@@ -24,28 +23,22 @@ class CategoryTree extends Component {
     let subcategories;
     let parentId;
     if (nodes) {
-      //console.log(this.props.categoriesTree.nodes[this.props.currentNode].sub);
       subcategories = nodes[this.props.currentNode].sub;
-      //console.log('Parent: ', nodes[this.props.currentNode].parent);
       parentId = nodes[this.props.currentNode].parent;
     }
 
     return (
-      <div>
-        <p className="App-intro">Categories</p>
-
-        <CategoriesTreeLayout
-          currentCategory={currentCategory}
-          subcategories={subcategories}
-          categories={categories}
-          onSubcategoryClick={subcategoryId =>
-            this.categoryClicked(subcategoryId)
-          }
-          onCurrentCategoryClick={() => {
-            this.categoryClicked(parentId);
-          }}
-        />
-      </div>
+      <CategoriesTreeLayout
+        currentCategory={currentCategory}
+        subcategories={subcategories}
+        categories={categories}
+        onSubcategoryClick={subcategoryId =>
+          this.categoryClicked(subcategoryId)
+        }
+        onCurrentCategoryClick={() => {
+          this.categoryClicked(parentId);
+        }}
+      />
     );
   }
 }
@@ -59,17 +52,20 @@ export default connect(null, { changeMode, selectCurrentCategory })(
 const CategoriesTreeLayout = props => {
   if (props.currentCategory && props.subcategories && props.categories) {
     return (
-      <ListGroup>
-        <CurrentCategory
-          currentCategory={props.currentCategory}
-          onCurrentCategoryClick={props.onCurrentCategoryClick}
-        />
-        <Subcategories
-          subcategories={props.subcategories}
-          categories={props.categories}
-          onSubcategoryClick={props.onSubcategoryClick}
-        />
-      </ListGroup>
+      <div>
+        <p className="App-intro">Categories</p>
+        <ListGroup>
+          <CurrentCategory
+            currentCategory={props.currentCategory}
+            onCurrentCategoryClick={props.onCurrentCategoryClick}
+          />
+          <Subcategories
+            subcategories={props.subcategories}
+            categories={props.categories}
+            onSubcategoryClick={props.onSubcategoryClick}
+          />
+        </ListGroup>
+      </div>
     );
   } else {
     return <p className="App-intro">Loading...</p>;
