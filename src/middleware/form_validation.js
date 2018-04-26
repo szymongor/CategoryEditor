@@ -3,7 +3,7 @@ import {
   updateCategory,
   SUBMIT_ADD_FORM,
   SUBMIT_EDIT_FORM
-} from '../actions/appActions';
+} from '../actions/app_actions';
 
 const categoryValidation = store => next => action => {
   if (action.type === SUBMIT_ADD_FORM || action.type === SUBMIT_EDIT_FORM) {

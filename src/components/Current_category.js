@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeMode } from '../actions/appActions';
-import { CATEGORY_EDIT_MODE, CATEGORY_NEW_MODE } from '../actions/appActions';
+import {
+  changeMode,
+  CATEGORY_EDIT_MODE,
+  CATEGORY_NEW_MODE
+} from '../actions/app_actions';
 import { ButtonToolbar, Button, Glyphicon, Table } from 'react-bootstrap';
 import { CATEGORY_FIELDS } from './category_fields';
 

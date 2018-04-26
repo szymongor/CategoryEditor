@@ -1,10 +1,10 @@
-import { putCategory, API_PUT_CATEGORY } from '../actions/apiActions';
+import { putCategory, API_PUT_CATEGORY } from '../actions/api_actions';
 import {
   changeMode,
   fetchCategories,
   UPDATE_CATEGORY,
   CATEGORY_VIEW_MODE
-} from '../actions/appActions';
+} from '../actions/app_actions';
 
 const categoryIdEnricher = store => next => action => {
   if (action.type === UPDATE_CATEGORY) {

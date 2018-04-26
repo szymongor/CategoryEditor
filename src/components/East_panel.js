@@ -5,14 +5,12 @@ import CategoryForm from './category_form/Category_form';
 import {
   submitAddForm,
   submitEditForm,
-  deleteCategory
-} from '../actions/appActions';
-import {
+  deleteCategory,
   changeMode,
   CATEGORY_VIEW_MODE,
   CATEGORY_EDIT_MODE,
   CATEGORY_NEW_MODE
-} from '../actions/appActions';
+} from '../actions/app_actions';
 
 class EastPanel extends Component {
   constructor(props) {

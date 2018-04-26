@@ -1,7 +1,7 @@
 import {
   RECEIVED_CATEGORIES,
   SELECT_CURRENT_CATEGORY
-} from '../actions/appActions';
+} from '../actions/app_actions';
 
 const INITIAL_STATE = { categories: [], categoriesTree: {}, currentNode: null };
 

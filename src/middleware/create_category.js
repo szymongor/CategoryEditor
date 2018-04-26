@@ -1,10 +1,10 @@
-import { postCategory, API_POST_CATEGORY } from '../actions/apiActions';
+import { postCategory, API_POST_CATEGORY } from '../actions/api_actions';
 import {
   changeMode,
   fetchCategories,
   CATEGORY_VIEW_MODE,
   CREATE_CATEGORY
-} from '../actions/appActions';
+} from '../actions/app_actions';
 
 const parentIdEnricher = store => next => action => {
   if (action.type === CREATE_CATEGORY) {

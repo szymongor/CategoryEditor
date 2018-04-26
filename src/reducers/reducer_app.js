@@ -1,6 +1,4 @@
-import { CHANGE_MODE } from '../actions/appActions';
-
-import { CATEGORY_VIEW_MODE } from '../actions/appActions';
+import { CHANGE_MODE, CATEGORY_VIEW_MODE } from '../actions/app_actions';
 
 const INITIAL_STATE = { eastPanelMode: CATEGORY_VIEW_MODE };
 

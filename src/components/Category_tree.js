@@ -4,7 +4,7 @@ import {
   changeMode,
   selectCurrentCategory,
   CATEGORY_VIEW_MODE
-} from '../actions/appActions';
+} from '../actions/app_actions';
 import _ from 'lodash';
 import { ListGroup, ListGroupItem, Glyphicon } from 'react-bootstrap';
 

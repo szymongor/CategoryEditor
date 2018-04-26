@@ -2,8 +2,8 @@ import {
   receivedCategories,
   FETCH_CATEGORIES,
   RECEIVED_CATEGORIES
-} from '../actions/appActions';
-import { getCategories, API_GET_CATEGORIES } from '../actions/apiActions';
+} from '../actions/app_actions';
+import { getCategories, API_GET_CATEGORIES } from '../actions/api_actions';
 
 const categoriesNormalizer = store => next => action => {
   if (action.type === API_GET_CATEGORIES) {

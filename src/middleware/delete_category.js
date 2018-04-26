@@ -2,8 +2,8 @@ import {
   selectCurrentCategory,
   fetchCategories,
   DELETE_CATEGORY
-} from '../actions/appActions';
-import { deleteCategory, API_DELETE_CATEGORY } from '../actions/apiActions';
+} from '../actions/app_actions';
+import { deleteCategory, API_DELETE_CATEGORY } from '../actions/api_actions';
 
 const validate = store => next => action => {
   if (action.type === DELETE_CATEGORY) {
@@ -24,7 +24,6 @@ const deleteRouter = store => next => action => {
     if (action.payload.isRemovable) {
       store.dispatch(selectCurrentCategory(action.payload.category.parent_id));
       store.dispatch(deleteCategory(action.payload.category.id));
-      console.log('Category can be removed');
     }
   }
   let result = next(action);
