@@ -26,7 +26,6 @@ const categoryValidation = store => next => action => {
 const validationRouting = store => next => action => {
   if (action.type === SUBMIT_ADD_FORM || action.type === SUBMIT_EDIT_FORM) {
     if (action.payload.validation.status === 'FAILED') {
-      console.log('Validation fail: ', action.payload.validation.msg);
       //store.dispatch(formValidationFailed(...))
     } else if (action.payload.validation.status === 'SUCCESS') {
       switch (action.type) {

@@ -60,7 +60,6 @@ const CategoryFieldRow = props => {
   if (props.fieldValue === null || props.fieldValue === undefined) {
     fieldValue = '';
   }
-
   return (
     <tr key={props.fieldConfig.field}>
       <td width="30%">{props.fieldConfig.label}</td>

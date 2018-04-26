@@ -14,7 +14,6 @@ export function getCategories() {
 }
 
 export function postCategory(categoryFields) {
-  console.log('POST CATEGORY');
   let category = { category: categoryFields };
   const request = axios.post(`/categories`, category);
   return {

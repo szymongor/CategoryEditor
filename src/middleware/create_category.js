@@ -29,9 +29,7 @@ const createCategoryRouter = store => next => action => {
 
 const creatingSucces = store => next => action => {
   if (action.type === API_POST_CATEGORY) {
-    console.log(action.payload.data);
     if (action.payload.status === 200) {
-      //store.dispatch(selectCurrentCategory(newCategoryId));
       store.dispatch(changeMode(CATEGORY_VIEW_MODE));
       store.dispatch(getCategories());
     }
